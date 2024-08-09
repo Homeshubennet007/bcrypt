@@ -52,9 +52,11 @@ app.post('/login', async (req, res) =>{
     let user = await userModel.findOne({email})
    if(!user) return res.status(500).send("Something went wrong");
 
+    //getting error here even after submitting correct id and pass still getting something went wrong
     bcrypt.compare(password,user.password, function(err,result){
          if(result) res.status(200).send("You can login");
          else res.redirect("/login");
+        
        
 });
 
